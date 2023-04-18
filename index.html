@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="./css/github.css">
+  <script type="text/javascript" src="./js/marked.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.min.js"></script>
+  <title>MiaowCat</title>
+  <style>
+    pre {
+      white-space: pre;
+      word-break: normal;
+      padding: 16px;
+      overflow: auto;
+      font-family: Consolas;
+      line-height: 1.45;
+      color: #1F2328;
+      background-color: #F6F8FA;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="content"></div>
+  <script>
+    marked.setOptions({
+      highlight: function (code) {
+        return hljs.highlightAuto(code).value;
+      }
+    })
+    
+    fetch("./README.md")
+      .then(res => res.text())
+      .then(text => document.getElementById('content').innerHTML = marked.parse(text));
+  </script>
+</body>
+
+</html>
