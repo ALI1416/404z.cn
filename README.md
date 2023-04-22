@@ -1,4 +1,4 @@
-# Welcome To MiawoCat's Website
+# Welcome To MiaowCat's Website
 
 ## Navigation
 
