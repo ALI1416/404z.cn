@@ -7,7 +7,7 @@
   ![Followers](https://img.shields.io/github/followers/ALI1416?style=social)
 - [Gitee](https://gitee.com/ALI1416)
 
-## Projects
+## Project
 
 - [Local Network Screen Share](https://github.com/ALI1416/ScreenShare)
   ![C#](https://shields.io/badge/C%23-178600)
@@ -25,7 +25,15 @@
 
 ## Communication
 
-- `QQ` : `1416978277`
-- `WeChat` : `1416978277`
-- `Alipay` : `1416978277@qq.com`
-- `E-mail` : `1416978277@qq.com`
+- [x] `    QQ` : `1416978277`
+- [x] `WeChat` : `1416978277`
+- [x] `Alipay` : `1416978277@qq.com`
+- [x] `E-mail` : `1416978277@qq.com`
+
+## Contribution
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ALI1416/404z.cn/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/ALI1416/404z.cn/output/github-contribution-grid-snake.svg">
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/ALI1416/404z.cn/output/github-contribution-grid-snake.svg">
+</picture>
