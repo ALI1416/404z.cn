@@ -11,19 +11,33 @@
 
 - [Local Network Screen Share](https://github.com/ALI1416/ScreenShare)
   ![C#](https://shields.io/badge/C%23-178600)
-  ![Stars](https://img.shields.io/github/stars/ALI1416/ScreenShare?style=social)
-  ![Forks](https://img.shields.io/github/forks/ALI1416/ScreenShare?style=social)
-  ![Watchers](https://img.shields.io/github/watchers/ALI1416/ScreenShare?style=social)
+  [![Release](https://img.shields.io/github/v/release/ali1416/ScreenShare?label=Release)](https://github.com/ALI1416/ScreenShare/releases)
+- [Maven Project Parent Pattern](https://github.com/ALI1416/parent)
+  ![Java](https://shields.io/badge/Java-B07219)
+  [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/parent?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/parent)
 - [High Performance Clock](https://github.com/ALI1416/clock)
   ![Java](https://shields.io/badge/Java-B07219)
+  [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/clock?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/clock)
 - [High Performance Snowflake ID Generator](https://github.com/ALI1416/id)
   ![Java](https://shields.io/badge/Java-B07219)
+  [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/id?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/id)
 - [IP Address To Region](https://github.com/ALI1416/ip2region)
   ![Java](https://shields.io/badge/Java-B07219)
+  [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/ip2region?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/ip2region)
 - [Phone Number To Region](https://github.com/ALI1416/phone2region)
   ![Java](https://shields.io/badge/Java-B07219)
+  [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/phone2region?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/phone2region)
+- [QR Code Encoder For .Net](https://github.com/ALI1416/QRCodeEncoder.Net)
+  ![C#](https://shields.io/badge/C%23-178600)
+  [![NuGet Gallery](https://img.shields.io/nuget/v/Z.QRCodeEncoder.Net?label=NuGet%20Gallery)](https://www.nuget.org/packages/Z.QRCodeEncoder.Net)
+- [QR Code Encoder For Java](https://github.com/ALI1416/qrcode-encoder)
+  ![Java](https://shields.io/badge/Java-B07219)
+  [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/qrcode-encoder?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/qrcode-encoder)
+- [QR Code Encoder For JavaScript](https://github.com/ALI1416/qrcode-encoder-js)
+  ![TypeScript](https://shields.io/badge/TypeScript-3178C6)
+  [![NPM](https://img.shields.io/npm/v/@ali1416/qrcode-encoder?label=NPM)](https://www.npmjs.com/package/@ali1416/qrcode-encoder)
 
-## Communication
+## About
 
 - [x] `    QQ` : `1416978277`
 - [x] `WeChat` : `1416978277`
