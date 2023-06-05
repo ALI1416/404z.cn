@@ -3,12 +3,11 @@
   "version": "0.0.0",
   "description": "404z.cn",
   "scripts": {
-    "clean": "node ./script/clean.js",
     "about": "node ./script/about.js",
     "publish": "node ./script/publish.js",
-    "build": "npm run clean && npm run about && npm run publish"
+    "build": "npm run about && npm run publish"
   },
   "devDependencies": {
-    "@svgdotjs/svg.js": "^3.1.2"
+    "@ali1416/qrcode-encoder": "^1.0.3"
   }
 }
