@@ -39,15 +39,12 @@
 
 ## About
 
-- [x] `    QQ` : `1416978277`
-- [x] `WeChat` : `1416978277`
-- [x] `Alipay` : `1416978277@qq.com`
-- [x] `E-mail` : `1416978277@qq.com`
+![About](https://404z.cn/images/about.svg)
 
 ## Contribution
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://cdn.jsdelivr.net/gh/ALI1416/404z.cn@output/github-contribution-grid-snake-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://cdn.jsdelivr.net/gh/ALI1416/404z.cn@output/github-contribution-grid-snake.svg">
-  <img alt="github contribution grid snake animation" src="https://cdn.jsdelivr.net/gh/ALI1416/404z.cn@output/github-contribution-grid-snake.svg">
+  <img alt="Contribution" src="https://cdn.jsdelivr.net/gh/ALI1416/404z.cn@output/github-contribution-grid-snake.svg">
 </picture>
