@@ -41,7 +41,7 @@
 
 <object data="https://404z.cn/images/about.svg" style="max-width:100%;">
   <picture>
-    <source media="(prefers-color-scheme:dark)" srcset="https://404z.cn/images/about.dark.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="https://404z.cn/images/about.dark.svg">
     <img alt="About" src="https://404z.cn/images/about.light.svg">
   </picture>
 </object>
@@ -49,6 +49,6 @@
 ## Contribution
 
 <picture>
-  <source media="(prefers-color-scheme:dark)" srcset="https://404z.cn/images/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://404z.cn/images/github-contribution-grid-snake-dark.svg">
   <img alt="Contribution" src="https://404z.cn/images/github-contribution-grid-snake.svg">
 </picture>
