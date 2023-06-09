@@ -22,10 +22,13 @@ jobs:
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
-      - name: push github-contribution-grid-snake.svg to the output branch
+      - name: push github-contribution-grid-snake.svg to the master branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
-          target_branch: output
+          target_branch: master
           build_dir: dist
+          committer: ALI <1416978277@qq.com>
+          author: ALI <1416978277@qq.com>
+          commit_message: Generate Contribution Graph Animation
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

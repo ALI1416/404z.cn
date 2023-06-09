@@ -39,14 +39,13 @@
 
 ## About
 
-<object data="https://404z.cn/images/about.svg">
-  <img src="https://404z.cn/images/about.svg">
+<object data="https://404z.cn/images/about.svg" style="max-width:100%;">
+  <img alt="About" src="https://404z.cn/images/about.svg">
 </object>
 
 ## Contribution
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://cdn.jsdelivr.net/gh/ALI1416/404z.cn@output/github-contribution-grid-snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://cdn.jsdelivr.net/gh/ALI1416/404z.cn@output/github-contribution-grid-snake.svg">
-  <img alt="Contribution" src="https://cdn.jsdelivr.net/gh/ALI1416/404z.cn@output/github-contribution-grid-snake.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://404z.cn/images/github-contribution-grid-snake-dark.svg">
+  <img alt="Contribution" src="https://404z.cn/images/github-contribution-grid-snake.svg">
 </picture>
