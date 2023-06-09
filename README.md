@@ -40,6 +40,8 @@
 ## About
 
 <object data="./images/about.svg">
+  <img src="./images/about.svg">
+</object>
 
 ## Contribution
 
