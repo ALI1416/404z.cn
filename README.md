@@ -39,7 +39,7 @@
 
 ## About
 
-![About](https://404z.cn/images/about.svg)
+<object data="./images/about.svg">
 
 ## Contribution
 
