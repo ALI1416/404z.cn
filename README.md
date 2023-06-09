@@ -39,8 +39,8 @@
 
 ## About
 
-<object data="./images/about.svg">
-  <img src="./images/about.svg">
+<object data="https://404z.cn/images/about.svg">
+  <img src="https://404z.cn/images/about.svg">
 </object>
 
 ## Contribution
