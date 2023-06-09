@@ -25,6 +25,7 @@ jobs:
       - name: push github-contribution-grid-snake.svg to the master branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
+          keep_history: true
           target_branch: master
           build_dir: dist
           committer: ALI <1416978277@qq.com>
