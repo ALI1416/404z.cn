@@ -1,7 +1,8 @@
 const fs = require('fs')
 const {QRCode} = require('@ali1416/qrcode-encoder')
 
-const contactQQ = "https://qm.qq.com/cgi-bin/qm/qr?k=1eBuYD8Qu7vGH05Yrpac3UoLdWesIQfl"
+// const contactQQ = "https://qm.qq.com/cgi-bin/qm/qr?k=1eBuYD8Qu7vGH05Yrpac3UoLdWesIQfl"
+const contactQQ = "https://404z.cn/qq.html?qq=1416978277"
 const contactWeChat = "https://u.wechat.com/EKWOJfyClzkv8bhDG96fVAs"
 const contactAliPay = "https://qr.alipay.com/a7x14840swddpo9xtqadp9a"
 const contactEmail = "mailto:1416978277@qq.com"
