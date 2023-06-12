@@ -4,8 +4,9 @@
   "description": "404z.cn",
   "scripts": {
     "about": "node ./script/about.js",
+    "files": "node ./script/files.js",
     "publish": "node ./script/publish.js",
-    "build": "npm run about && npm run publish"
+    "build": "npm run about && npm run files && npm run publish"
   },
   "devDependencies": {
     "@ali1416/qrcode-encoder": "^1.1.0"

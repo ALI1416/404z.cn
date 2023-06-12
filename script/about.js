@@ -12,8 +12,9 @@ const sponsorWeChat = "wxp://f2f0jddlG49-RNa1tIOpyJBNMqY4uDhztz-4"
 const sponsorAliPay = "https://qr.alipay.com/tsx12002eejtwi0y7yx3x71"
 const sponsorUnionPay = "UnionPay"
 
-// c66l1
-const qrContactQQ = new QRCode(contactQQ, 1, 2, 5)
+// v5m2 108, 86, 62, 46 -2 106, 84, 60, 44 d37 +2 39
+// c37l3
+const qrContactQQ = new QRCode(contactQQ, 1, 3, 5)
 // c44l3
 const qrContactWeChat = new QRCode(contactWeChat, 3, 2, 5)
 // c45l2
