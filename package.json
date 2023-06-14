@@ -1,7 +1,6 @@
 {
   "name": "404z.cn",
   "version": "0.0.0",
-  "description": "404z.cn",
   "scripts": {
     "about": "node ./script/about.js",
     "files": "node ./script/files.js",

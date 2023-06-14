@@ -36,8 +36,9 @@ const qrName = ['contactQQ', 'contactWeChat', 'contactAliPay', 'contactEmail', '
 const qrColorLight = ['#f99', '#9c9', '#6cf', '#333', '#f99', '#9c9', '#6cf', '#333']
 const qrColorDark = ['#f99', '#9c9', '#6cf', '#ccc', '#f99', '#9c9', '#6cf', '#ccc']
 const qrXy = [[0, 80], [120, 80], [240, 80], [360, 80], [0, 280], [120, 280], [240, 280], [360, 280]]
-const textColorLight = '#1f2328'
-const textColorDark = '#e6edf3'
+// --color-fg-default
+const textColorLight = '#24292f'
+const textColorDark = '#c9d1d9'
 
 const style = styles()
 const def = defs()
