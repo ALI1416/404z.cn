@@ -2,7 +2,7 @@ const fs = require('fs')
 const {QRCode} = require('@ali1416/qrcode-encoder')
 
 // const contactQQ = "https://qm.qq.com/cgi-bin/qm/qr?k=1eBuYD8Qu7vGH05Yrpac3UoLdWesIQfl"
-const contactQQ = "https://404z.cn/qq.html?qq=1416978277"
+const contactQQ = "https://www.404z.cn/qq.html?qq=1416978277"
 const contactWeChat = "https://u.wechat.com/EKWOJfyClzkv8bhDG96fVAs"
 const contactAliPay = "https://qr.alipay.com/a7x14840swddpo9xtqadp9a"
 const contactEmail = "mailto:1416978277@qq.com"
@@ -13,7 +13,7 @@ const sponsorAliPay = "https://qr.alipay.com/tsx12002eejtwi0y7yx3x71"
 const sponsorUnionPay = "UnionPay"
 
 // v5m2 108, 86, 62, 46 -2 106, 84, 60, 44 d37 +2 39
-// c37l3
+// c41l3
 const qrContactQQ = new QRCode(contactQQ, 1, 3, 5)
 // c44l3
 const qrContactWeChat = new QRCode(contactWeChat, 3, 2, 5)
