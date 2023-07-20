@@ -9,11 +9,10 @@
   <!-- https://vercel.com/docs/concepts/analytics/quickstart -->
   <script defer src="/_vercel/insights/script.js"></script>
   <!-- https://github.com/markedjs/marked -->
-  <!-- https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js -->
-  <script type="text/javascript" src="./js/marked.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.1/marked.min.js"></script>
   <!-- https://github.com/sindresorhus/github-markdown-css -->
-  <!-- https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css -->
-  <link type="text/css" rel="stylesheet" href="./css/github-markdown.min.css">
+  <link type="text/css" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
   <title>MiaowCat's Website</title>
   <style>
     body {
@@ -33,12 +32,12 @@
 </head>
 
 <body>
-  <div id="markdown-body" class="markdown-body"></div>
-  <script>
-    fetch("./README.md")
-      .then(res => res.text())
-      .then(text => document.getElementById('markdown-body').innerHTML = marked.parse(text));
-  </script>
+<div id="markdown-body" class="markdown-body"></div>
+<script>
+  fetch('./README.md')
+    .then(res => res.text())
+    .then(text => document.getElementById('markdown-body').innerHTML = marked.parse(text))
+</script>
 </body>
 
 </html>

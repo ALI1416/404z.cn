@@ -2,15 +2,15 @@ const fs = require('fs')
 const {QRCode} = require('@ali1416/qrcode-encoder')
 
 // const contactQQ = "https://qm.qq.com/cgi-bin/qm/qr?k=1eBuYD8Qu7vGH05Yrpac3UoLdWesIQfl"
-const contactQQ = "https://www.404z.cn/qq.html?qq=1416978277"
-const contactWeChat = "https://u.wechat.com/EKWOJfyClzkv8bhDG96fVAs"
-const contactAliPay = "https://qr.alipay.com/a7x14840swddpo9xtqadp9a"
-const contactEmail = "mailto:1416978277@qq.com"
+const contactQQ = 'https://www.404z.cn/qq.html?qq=1416978277'
+const contactWeChat = 'https://u.wechat.com/EKWOJfyClzkv8bhDG96fVAs'
+const contactAliPay = 'https://qr.alipay.com/a7x14840swddpo9xtqadp9a'
+const contactEmail = 'mailto:1416978277@qq.com'
 
-const sponsorQQ = "https://i.qianbao.qq.com/wallet/sqrcode.htm?a=1&n=1&u=1416978277&ac=CAEQ5b7VowUYnfDsgQY%3D_xxx_sign"
-const sponsorWeChat = "wxp://f2f0jddlG49-RNa1tIOpyJBNMqY4uDhztz-4"
-const sponsorAliPay = "https://qr.alipay.com/tsx12002eejtwi0y7yx3x71"
-const sponsorUnionPay = "UnionPay"
+const sponsorQQ = 'https://i.qianbao.qq.com/wallet/sqrcode.htm?a=1&n=1&u=1416978277&ac=CAEQ5b7VowUYnfDsgQY%3D_xxx_sign'
+const sponsorWeChat = 'wxp://f2f0jddlG49-RNa1tIOpyJBNMqY4uDhztz-4'
+const sponsorAliPay = 'https://qr.alipay.com/tsx12002eejtwi0y7yx3x71'
+const sponsorUnionPay = 'UnionPay'
 
 // v5m2 108, 86, 62, 46 -2 106, 84, 60, 44 d37 +2 39
 // c41l3
@@ -52,21 +52,18 @@ const textDark = texts(false)
 const svgLight = `<svg width="480" height="400" viewBox="0 0 480 400" xmlns="http://www.w3.org/2000/svg">
 ${def}
 ${textLight}
-${useLight}</svg>
-`
+${useLight}</svg>`
 
 const svgDark = `<svg width="480" height="400" viewBox="0 0 480 400" xmlns="http://www.w3.org/2000/svg">
 ${def}
 ${textDark}
-${useDark}</svg>
-`
+${useDark}</svg>`
 
 const svg = `<svg width="480" height="400" viewBox="0 0 480 400" xmlns="http://www.w3.org/2000/svg">
 ${style}
 ${def}
 ${text}
-${use}</svg>
-`
+${use}</svg>`
 
 /**
  * 写入文件
@@ -94,18 +91,18 @@ function styles() {
   }
   style += `}
 </style>`
-  return style;
+  return style
 }
 
 /**
  * 定义
  */
 function defs() {
-  let defs = "<defs>\n"
+  let defs = '<defs>\n'
   for (let i = 0; i < qr.length; i++) {
     defs += `<path id="${qrName[i]}" d="${QrMatrix2SvgPath(qr[i].Matrix, 3)}"/>\n`
   }
-  defs += "</defs>"
+  defs += '</defs>'
   return defs
 }
 
@@ -113,8 +110,8 @@ function defs() {
  * 文本
  */
 function texts(light) {
-  let color;
-  if (typeof light === "undefined") {
+  let color
+  if (typeof light === 'undefined') {
     color = `class="text"`
   } else if (light) {
     color = `fill="${textColorLight}"`
@@ -143,10 +140,10 @@ function texts(light) {
  * 引用
  */
 function uses(light) {
-  let uses = ""
+  let uses = ''
   for (let i = 0; i < qrName.length; i++) {
-    let color;
-    if (typeof light === "undefined") {
+    let color
+    if (typeof light === 'undefined') {
       color = `class="qr${i}"`
     } else if (light) {
       color = `fill="${qrColorLight[i]}"`
@@ -166,13 +163,13 @@ function uses(light) {
  */
 function QrMatrix2SvgPath(bytes, pixelSize) {
   let length = bytes.length
-  let svg = ""
+  let svg = ''
   for (let x = 0; x < length; x++) {
     for (let y = 0; y < length; y++) {
       if (bytes[x][y]) {
         let xx = (x + 1) * pixelSize
         let yy = (y + 1) * pixelSize
-        svg += "M" + xx + " " + yy + "H" + (xx + pixelSize) + "V" + (yy + pixelSize) + "H" + xx + "Z"
+        svg += 'M' + xx + ' ' + yy + 'H' + (xx + pixelSize) + 'V' + (yy + pixelSize) + 'H' + xx + 'Z'
       }
     }
   }

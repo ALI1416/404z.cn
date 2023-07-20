@@ -1,0 +1,22 @@
+[
+  [
+    "https://raw.githubusercontent.com/ALI1416/ip2region/v3.0.0/data/ip2region.zdb",
+    "./dist/files/ip2region/v3.0.0/data/ip2region.zdb"
+  ],
+  [
+    "https://raw.githubusercontent.com/ALI1416/phone2region/v2.0.0/data/phone2region.zdb",
+    "./dist/files/phone2region/v2.0.0/data/phone2region.zdb"
+  ],
+  [
+    "https://raw.githubusercontent.com/ALI1416/phone2region/v2.0.0/data/phone2region.txt",
+    "./dist/files/phone2region/v2.0.0/data/phone2region.txt"
+  ],
+  [
+    "https://raw.githubusercontent.com/ALI1416/qrcode-encoder-js/master/demo/index.html",
+    "./dist/demo/qrcode-encoder.html"
+  ],
+  [
+    "https://raw.githubusercontent.com/ALI1416/snk/master/demo/index.html",
+    "./dist/demo/snk.html"
+  ]
+]

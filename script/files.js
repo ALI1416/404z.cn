@@ -1,23 +1,12 @@
-const https = require('https');
-const fs = require('fs');
+const pkg = require('../json/files.json')
+const fs = require('fs')
 
-fs.mkdirSync('./dist/files/ip2region/v3.0.0/data/', {recursive: true})
-saveFile('https://raw.githubusercontent.com/ALI1416/ip2region/v3.0.0/data/ip2region.zdb', './dist/files/ip2region/v3.0.0/data/ip2region.zdb')
-fs.mkdirSync('./dist/files/phone2region/v2.0.0/data/', {recursive: true})
-saveFile('https://raw.githubusercontent.com/ALI1416/phone2region/v2.0.0/data/phone2region.zdb', './dist/files/phone2region/v2.0.0/data/phone2region.zdb')
-saveFile('https://raw.githubusercontent.com/ALI1416/phone2region/v2.0.0/data/phone2region.txt', './dist/files/phone2region/v2.0.0/data/phone2region.txt')
-
-/**
- * 保存文件
- * @param url URL
- * @param path 路径
- */
-function saveFile(url, path) {
-  https.get(url, (res) => {
-    let writeStream = fs.createWriteStream(path)
-    res.pipe(writeStream)
-    writeStream.on('finish', () => {
-      writeStream.close()
-    })
-  })
+async function download() {
+  for (let p of pkg) {
+    fs.mkdirSync(p[1].substring(0, p[1].lastIndexOf('/')), {recursive: true})
+    let res = Buffer.from(await (await (await fetch(p[0])).blob()).arrayBuffer())
+    fs.writeFileSync(p[1], res)
+  }
 }
+
+download()

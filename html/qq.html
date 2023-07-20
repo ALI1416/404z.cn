@@ -13,15 +13,15 @@
 <script>
   const params = Object.fromEntries(new URLSearchParams(location.search.split('?')[1]).entries())
   const qq = params.qq
-  const mobile = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=" + qq
-  const pc = "tencent://AddContact/?subcmd=all&uin=" + qq
-  document.title = "QQ:" + qq
-  document.getElementById("content").innerHTML = "正在跳转...<br>" +
-    "如未跳转成功，请复制QQ进行手动添加<br>" +
-    "<code>" + qq + "</code><br>" +
-    "或点击链接进行添加<br>" +
-    "<a href='" + mobile + "'>移动端</a><br>" +
-    "<a href='" + pc + "'>PC端</a>"
+  const mobile = 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=' + qq
+  const pc = 'tencent://AddContact/?subcmd=all&uin=' + qq
+  document.title = 'QQ:' + qq
+  document.getElementById('content').innerHTML = '正在跳转...<br>' +
+    '如未跳转成功，请复制QQ进行手动添加<br>' +
+    '<code>' + qq + '</code><br>' +
+    '或点击链接进行添加<br>' +
+    '<a href=\'' + mobile + '\'>移动端</a><br>' +
+    '<a href=\'' + pc + '\'>PC端</a>'
   if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
     location.href = mobile
   } else {
