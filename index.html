@@ -34,9 +34,26 @@
 <body>
 <div id="markdown-body" class="markdown-body"></div>
 <script>
-  fetch('./README.md')
-    .then(res => res.text())
-    .then(text => document.getElementById('markdown-body').innerHTML = marked.parse(text))
+  parse()
+
+  async function parse() {
+    document.getElementById('markdown-body').innerHTML = marked.parse(fix(await (await fetch('./README.md')).text(), 40))
+  }
+
+  function fix(text, rows) {
+    let r = ''
+    let s = text.split(/\r\n|\n/)
+    for (let i = 0; i < rows; i++) {
+      r += s[i] + '\n'
+    }
+    r += `<object data="https://www.404z.cn/images/about.svg" style="max-width:100%;"></object>
+
+## Contribution
+
+<object data="https://api.404z.cn/api/snk/generate/ali1416.svg" style="max-width:100%;"></object>
+`
+    return r
+  }
 </script>
 </body>
 

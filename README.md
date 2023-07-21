@@ -5,7 +5,7 @@
 - [GitHub](https://github.com/ALI1416)
   ![Stars](https://img.shields.io/github/stars/ALI1416?style=social)
   ![Followers](https://img.shields.io/github/followers/ALI1416?style=social)
-  [Gitee](https://gitee.com/ALI1416)
+- [Gitee](https://gitee.com/ALI1416)
 - [Files](https://www.404z.cn/files)
 - [Demo](https://www.404z.cn/demo)
 
@@ -32,21 +32,20 @@
 - [QR Code Encoder For JavaScript](https://github.com/ALI1416/qrcode-encoder-js)
   ![TypeScript](https://shields.io/badge/TypeScript-3178C6)
   [![NPM](https://img.shields.io/npm/v/@ali1416/qrcode-encoder?label=NPM)](https://www.npmjs.com/package/@ali1416/qrcode-encoder)
+- [GitHub Contribution Graph Animation](https://github.com/ALI1416/snk)
+  ![TypeScript](https://shields.io/badge/TypeScript-3178C6)
+  [![NPM](https://img.shields.io/npm/v/@ali1416/snk?label=NPM)](https://www.npmjs.com/package/@ali1416/snk)
 
 ## About
 
-<object data="https://www.404z.cn/images/about.svg" style="max-width:100%;">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://www.404z.cn/images/about.dark.svg">
-    <img alt="About" src="https://www.404z.cn/images/about.light.svg">
-  </picture>
-</object>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://www.404z.cn/images/about.dark.svg">
+  <img alt="About" src="https://www.404z.cn/images/about.light.svg">
+</picture>
 
 ## Contribution
 
-<object data="https://api.404z.cn/api/snk/generate/ali1416.svg" style="max-width:100%;">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.404z.cn/api/snk/generate/ali1416.dark.svg">
-    <img alt="About" src="https://api.404z.cn/api/snk/generate/ali1416.light.svg">
-  </picture>
-</object>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.404z.cn/api/snk/generate/ali1416.dark.svg">
+  <img alt="About" src="https://api.404z.cn/api/snk/generate/ali1416.light.svg">
+</picture>
