@@ -6,6 +6,7 @@
   ![Stars](https://img.shields.io/github/stars/ALI1416?style=social)
   ![Followers](https://img.shields.io/github/followers/ALI1416?style=social)
 - [Gitee](https://gitee.com/ALI1416)
+- [API](https://api.404z.cn)
 - [Files](https://www.404z.cn/files)
 - [Demo](https://www.404z.cn/demo)
 
@@ -23,6 +24,9 @@
 - [Phone Number To Region](https://github.com/ALI1416/phone2region)
   ![Java](https://shields.io/badge/Java-B07219)
   [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/phone2region?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/phone2region)
+- [Tiny Token SpringBoot Starter](https://github.com/ALI1416/tiny-token-spring-boot-starter)
+  ![Java](https://shields.io/badge/Java-B07219)
+  [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/tiny-token-spring-boot-starter?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/tiny-token-spring-boot-starter)
 - [QR Code Encoder For .Net](https://github.com/ALI1416/QRCodeEncoder.Net)
   ![C#](https://shields.io/badge/C%23-178600)
   [![NuGet Gallery](https://img.shields.io/nuget/v/Z.QRCodeEncoder.Net?label=NuGet%20Gallery)](https://www.nuget.org/packages/Z.QRCodeEncoder.Net)

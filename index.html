@@ -37,7 +37,7 @@
   parse()
 
   async function parse() {
-    document.getElementById('markdown-body').innerHTML = marked.parse(fix(await (await fetch('./README.md')).text(), 40))
+    document.getElementById('markdown-body').innerHTML = marked.parse(fix(await (await fetch('./README.md')).text(), 44))
   }
 
   function fix(text, rows) {
