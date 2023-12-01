@@ -9,11 +9,11 @@
   <!-- https://vercel.com/docs/concepts/analytics/quickstart -->
   <script defer src="/_vercel/insights/script.js"></script>
   <!-- https://github.com/markedjs/marked -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.1/marked.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.0.0/marked.min.js"></script>
   <!-- https://github.com/sindresorhus/github-markdown-css -->
   <link type="text/css" rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
-  <title>MiaowCat's Website</title>
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.4.0/github-markdown.min.css">
+  <title>MeowCat's Website</title>
   <style>
     body {
       box-sizing: border-box;
@@ -37,7 +37,7 @@
   parse()
 
   async function parse() {
-    document.getElementById('markdown-body').innerHTML = marked.parse(fix(await (await fetch('./README.md')).text(), 40))
+    document.getElementById('markdown-body').innerHTML = marked.parse(fix(await (await fetch('./README.md')).text(), 50))
   }
 
   function fix(text, rows) {
