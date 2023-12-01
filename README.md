@@ -8,8 +8,8 @@
 - [Gitee](https://gitee.com/ALI1416)
 - [Files](https://www.404z.cn/files)
 - [Demo](https://www.404z.cn/demo)
-- [Blog](https://blog.404z.cn)
 - [API](https://api.404z.cn)
+- [Blog](https://blog.404z.cn)
 - [Web](https://web.404z.cn)
 - [WebSocket](https://ws.404z.cn)
 
