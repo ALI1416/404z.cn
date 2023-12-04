@@ -33,19 +33,9 @@
   parse()
 
   async function parse() {
-    document.getElementById('markdown-body').innerHTML = marked.parse(fix(await (await fetch('./README.md')).text(), 85))
+    document.getElementById('markdown-body').innerHTML = marked.parse(await (await fetch('./README.md')).text())
   }
 
-  function fix(text, rows) {
-    let r = ''
-    let s = text.split(/\r\n|\n/)
-    for (let i = 0; i < rows; i++) {
-      r += s[i] + '\n'
-    }
-    r += `<object data="https://www.404z.cn/images/about.svg" style="max-width:100%;"></object>
-`
-    return r
-  }
 </script>
 </body>
 

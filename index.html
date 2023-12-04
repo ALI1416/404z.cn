@@ -37,7 +37,7 @@
   parse()
 
   async function parse() {
-    document.getElementById('markdown-body').innerHTML = marked.parse(fix(await (await fetch('./README.md')).text(), 50))
+    document.getElementById('markdown-body').innerHTML = marked.parse(fix(await (await fetch('./README.md')).text(), 53))
   }
 
   function fix(text, rows) {
@@ -48,7 +48,7 @@
     }
     r += `<object data="https://www.404z.cn/images/about.svg" style="max-width:100%;"></object>
 
-## Contribution
+## 贡献
 
 <object data="https://api.404z.cn/api/snk/generate/ali1416.svg" style="max-width:100%;"></object>
 `
