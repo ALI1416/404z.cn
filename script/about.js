@@ -119,7 +119,7 @@ function texts(light) {
     color = `fill="${textColorDark}"`
   }
   return `<text ${color}>
-<tspan x="10" y="20" font-size="150%">联络</tspan>
+<tspan x="1" y="20" font-size="125%" font-weight="600">联络</tspan>
 <tspan x="45" y="60"><a href="${contactQQ}" target="_blank" ${color}>QQ</a></tspan>
 <tspan x="20" y="80" font-size="85%">1416978277</tspan>
 <tspan x="162" y="60"><a href="${contactWeChat}" target="_blank" ${color}>微信</a></tspan>
@@ -128,7 +128,7 @@ function texts(light) {
 <tspan x="240" y="80" font-size="85%">1416978277</tspan>
 <tspan x="390" y="60"><a href="${contactEmail}" target="_blank" ${color}>电子邮箱</a></tspan>
 <tspan x="330" y="80" font-size="85%">1416978277@qq.com</tspan>
-<tspan x="10" y="240" font-size="150%">赞助</tspan>
+<tspan x="1" y="240" font-size="125%" font-weight="600">赞助</tspan>
 <tspan x="45" y="280">QQ</tspan>
 <tspan x="162" y="280">微信</tspan>
 <tspan x="275" y="280">支付宝</tspan>

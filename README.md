@@ -15,7 +15,7 @@
 
 ## 项目
 
-- [ 局域网屏幕共享](https://github.com/ALI1416/ScreenShare)
+- [局域网屏幕共享](https://github.com/ALI1416/ScreenShare)
   ![C#](https://shields.io/badge/C%23-178600)
   [![Release](https://img.shields.io/github/v/release/ALI1416/ScreenShare?label=Release)](https://github.com/ALI1416/ScreenShare/releases)
   ![Stars](https://img.shields.io/github/stars/ALI1416/ScreenShare?style=social)
@@ -39,7 +39,7 @@
 - [二维码生成器.Net版](https://github.com/ALI1416/QRCodeEncoder.Net)
   ![C#](https://shields.io/badge/C%23-178600)
   [![NuGet Gallery](https://img.shields.io/nuget/v/Z.QRCodeEncoder.Net?label=NuGet%20Gallery)](https://www.nuget.org/packages/Z.QRCodeEncoder.Net)
-- [ 二维码生成器Java版](https://github.com/ALI1416/qrcode-encoder)
+- [二维码生成器Java版](https://github.com/ALI1416/qrcode-encoder)
   ![Java](https://shields.io/badge/Java-B07219)
   [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/qrcode-encoder?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/qrcode-encoder)
 - [二维码生成器JavaScript版](https://github.com/ALI1416/qrcode-encoder-js)
