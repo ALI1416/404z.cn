@@ -59,6 +59,6 @@
 ## 贡献
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://api.404z.cn/api/snk/generate/ali1416.dark.svg">
-  <img alt="About" src="https://api.404z.cn/api/snk/generate/ali1416.light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://www.404z.cn/api/snk/generate/ali1416.dark.svg">
+  <img alt="About" src="https://www.404z.cn/api/snk/generate/ali1416.light.svg">
 </picture>
