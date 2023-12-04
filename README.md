@@ -1,59 +1,62 @@
-# Welcome To MeowCat's Website
+# MeowCat
 
-## Navigation
+## 导航
 
-- [GitHub](https://github.com/ALI1416)
+- 账号 &emsp;[GitHub](https://github.com/ALI1416)
   ![Stars](https://img.shields.io/github/stars/ALI1416?style=social)
   ![Followers](https://img.shields.io/github/followers/ALI1416?style=social)
-- [Gitee](https://gitee.com/ALI1416)
-- [Files](https://www.404z.cn/files)
-- [Demo](https://www.404z.cn/demo)
-- [API](https://api.404z.cn)
-- [Blog](https://blog.404z.cn)
-- [Web](https://web.404z.cn)
-- [WebSocket](https://ws.404z.cn)
+  &emsp;[Gitee](https://gitee.com/ALI1416)
+- 演示 &emsp;[文件](https://www.404z.cn/files)
+  &emsp;[示例](https://www.404z.cn/demo)
+  &emsp;[API](https://www.404z.cn/api/)
+- 网站 &emsp;[Blog](https://blog.404z.cn)
+  &emsp;[Web](https://web.404z.cn)
+  &emsp;[WebSocket](https://ws.404z.cn)
 
-## Project
+## 项目
 
-- [Local Network Screen Share](https://github.com/ALI1416/ScreenShare)
+- [ 局域网屏幕共享](https://github.com/ALI1416/ScreenShare)
   ![C#](https://shields.io/badge/C%23-178600)
   [![Release](https://img.shields.io/github/v/release/ALI1416/ScreenShare?label=Release)](https://github.com/ALI1416/ScreenShare/releases)
-- [Snowflake ID Generator](https://github.com/ALI1416/id)
+  ![Star](https://img.shields.io/github/stars/ALI1416/ScreenShare?style=social)
+  ![Fork](https://img.shields.io/github/forks/ALI1416/ScreenShare?style=social)
+  ![Watcher](https://img.shields.io/github/watchers/ALI1416/ScreenShare?style=social)
+- [雪花ID生成器](https://github.com/ALI1416/id)
   ![Java](https://shields.io/badge/Java-B07219)
   [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/id?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/id)
-- [IP Address To Region](https://github.com/ALI1416/ip2region)
+- [IP地址转区域](https://github.com/ALI1416/ip2region)
   ![Java](https://shields.io/badge/Java-B07219)
   [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/ip2region?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/ip2region)
-- [Phone Number To Region](https://github.com/ALI1416/phone2region)
+- [手机号码转区域](https://github.com/ALI1416/phone2region)
   ![Java](https://shields.io/badge/Java-B07219)
   [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/phone2region?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/phone2region)
-- [Tiny Token SpringBoot Starter](https://github.com/ALI1416/tiny-token-spring-boot-starter)
+- [轻量级权限认证](https://github.com/ALI1416/tiny-token-spring-boot-starter)
   ![Java](https://shields.io/badge/Java-B07219)
   [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/tiny-token-spring-boot-starter?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/tiny-token-spring-boot-starter)
-- [Tiny Task SpringBoot Starter](https://github.com/ALI1416/tiny-task-spring-boot-starter)
+- [轻量级集群任务](https://github.com/ALI1416/tiny-task-spring-boot-starter)
   ![Java](https://shields.io/badge/Java-B07219)
   [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/tiny-task-spring-boot-starter?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/tiny-task-spring-boot-starter)
-- [QR Code Encoder For .Net](https://github.com/ALI1416/QRCodeEncoder.Net)
+- [二维码生成器.Net版](https://github.com/ALI1416/QRCodeEncoder.Net)
   ![C#](https://shields.io/badge/C%23-178600)
   [![NuGet Gallery](https://img.shields.io/nuget/v/Z.QRCodeEncoder.Net?label=NuGet%20Gallery)](https://www.nuget.org/packages/Z.QRCodeEncoder.Net)
-- [QR Code Encoder For Java](https://github.com/ALI1416/qrcode-encoder)
+- [ 二维码生成器Java版](https://github.com/ALI1416/qrcode-encoder)
   ![Java](https://shields.io/badge/Java-B07219)
   [![Maven Central](https://img.shields.io/maven-central/v/cn.404z/qrcode-encoder?label=Maven%20Central)](https://mvnrepository.com/artifact/cn.404z/qrcode-encoder)
-- [QR Code Encoder For JavaScript](https://github.com/ALI1416/qrcode-encoder-js)
+- [二维码生成器JavaScript版](https://github.com/ALI1416/qrcode-encoder-js)
   ![TypeScript](https://shields.io/badge/TypeScript-3178C6)
   [![NPM](https://img.shields.io/npm/v/@ali1416/qrcode-encoder?label=NPM)](https://www.npmjs.com/package/@ali1416/qrcode-encoder)
-- [GitHub Contribution Graph Animation](https://github.com/ALI1416/snk)
+- [GitHub贡献图动画](https://github.com/ALI1416/snk)
   ![TypeScript](https://shields.io/badge/TypeScript-3178C6)
   [![NPM](https://img.shields.io/npm/v/@ali1416/snk?label=NPM)](https://www.npmjs.com/package/@ali1416/snk)
 
-## About
+## 关于
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://www.404z.cn/images/about.dark.svg">
   <img alt="About" src="https://www.404z.cn/images/about.light.svg">
 </picture>
 
-## Contribution
+## 贡献
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://api.404z.cn/api/snk/generate/ali1416.dark.svg">

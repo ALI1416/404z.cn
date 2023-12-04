@@ -6,14 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <base target="_blank">
-  <!-- https://vercel.com/docs/analytics -->
-  <script defer src="/_vercel/insights/script.js"></script>
-  <!-- https://github.com/markedjs/marked -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.0.0/marked.min.js"></script>
-  <!-- https://github.com/sindresorhus/github-markdown-css -->
   <link type="text/css" rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.4.0/github-markdown.min.css">
-  <title>MeowCat</title>
+  <title>API</title>
   <style>
     body {
       box-sizing: border-box;
@@ -37,7 +33,7 @@
   parse()
 
   async function parse() {
-    document.getElementById('markdown-body').innerHTML = marked.parse(fix(await (await fetch('./README.md')).text(), 50))
+    document.getElementById('markdown-body').innerHTML = marked.parse(fix(await (await fetch('./README.md')).text(), 85))
   }
 
   function fix(text, rows) {
@@ -47,10 +43,6 @@
       r += s[i] + '\n'
     }
     r += `<object data="https://www.404z.cn/images/about.svg" style="max-width:100%;"></object>
-
-## Contribution
-
-<object data="https://api.404z.cn/api/snk/generate/ali1416.svg" style="max-width:100%;"></object>
 `
     return r
   }
