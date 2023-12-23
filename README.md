@@ -58,6 +58,9 @@
 
 ## 贡献
 
+| [![GitHub Stats](https://github-readme-stats.404z.cn/api?username=ALI1416&theme=transparent&hide_border=true&locale=cn&show_icons=true&include_all_commits=true&count_private=true)](https://github.com/ALI1416) | [![GitHub Languages](https://github-readme-stats.404z.cn/api/top-langs/?username=ALI1416&theme=transparent&hide_border=true&locale=cn&layout=compact&langs_count=8)](https://github.com/ALI1416) |
+| - | - |
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://www.404z.cn/api/snk/generate/ali1416.dark.svg">
   <img alt="About" src="https://www.404z.cn/api/snk/generate/ali1416.light.svg">
