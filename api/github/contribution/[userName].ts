@@ -1,10 +1,13 @@
+import {VercelRequest, VercelResponse} from '@vercel/node'
+import {cacheControl, cacheControlMaxAge, contentType, contentTypeJson, contentTypePlain} from '../../constants'
+
 // import * as fs from 'fs'
 
 /**
  * 获取用户贡献
  * @param userName 用户名
  * @param year 年(默认一年前)
- * @return number[][]
+ * @return number[][] 贡献
  */
 async function getContribution(userName: string, year: string): Promise<number[][]> {
   let url = `https://github.com/users/${userName}/contributions`
@@ -19,7 +22,7 @@ async function getContribution(userName: string, year: string): Promise<number[]
 /**
  * 解析
  * @param data 数据
- * @return number[][]
+ * @return number[][] 贡献
  */
 function parse(data: string): number[][] {
   let array: number[][] = []
@@ -62,7 +65,7 @@ function parse(data: string): number[][] {
       if (levelReg !== null) {
         let level = Number(levelReg[1])
         let contributionReg = RegExp(/(\d+) contribution/).exec(td)
-        let contribution
+        let contribution: number
         if (contributionReg !== null) {
           contribution = Number(contributionReg[1])
         } else {
@@ -77,17 +80,25 @@ function parse(data: string): number[][] {
   return array
 }
 
-export default async (request, response) => {
+export default async (request: VercelRequest, response: VercelResponse) => {
   const {userName, year} = request.query
   let userNameValue = userName as string
   let yearValue = year as string
+
+  let status = 200
+  let contentTypeValue = contentTypePlain
+  let data: any
   try {
     // /api/github/contribution/ali1416
-    response.status(200)
-      .setHeader('Cache-Control', 'max-age=21600, s-maxage=43200, stale-while-revalidate=86400')
-      .json(await getContribution(userNameValue, yearValue))
+    data = await getContribution(userNameValue, yearValue)
+    contentTypeValue = contentTypeJson
   } catch (e) {
     console.error(e)
-    response.status(500).end(e.toString())
+    status = 500
+    data = e.toString()
   }
+  response.status(status)
+    .setHeader(contentType, contentTypeValue)
+    .setHeader(cacheControl, cacheControlMaxAge)
+    .send(data)
 }

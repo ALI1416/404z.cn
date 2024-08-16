@@ -1,3 +1,5 @@
+import {VercelRequest, VercelResponse} from '@vercel/node'
+import {contentType, contentTypeJson, contentTypePlain, contentTypeSvg, textNotFound} from '../constants'
 import {QRCode} from '@ali1416/qrcode-encoder'
 
 /**
@@ -25,7 +27,7 @@ function QrMatrix2SvgPath(bytes: boolean[][], pixelSize: number): string {
   return svg
 }
 
-export default (request, response) => {
+export default (request: VercelRequest, response: VercelResponse) => {
   const {path, content, level, mode, versionNumber, pixelSize} = request.query
   let pathValue = path as string
   let contentValue = content as string
@@ -45,32 +47,36 @@ export default (request, response) => {
   if (isNaN(pixelSizeValue)) {
     pixelSizeValue = 10
   }
+
+  let status = 200
+  let contentTypeValue = contentTypePlain
+  let data: any
   try {
-    let data
-    let contentType = 'image/svg+xml; charset=utf-8'
     switch (pathValue) {
       // /api/qrcode/encoder?content=123
       case 'encoder': {
         let qr = new QRCode(contentValue, levelValue, modeValue, versionNumberValue)
         data = [[qr.Level, qr.Mode, qr.VersionNumber], qr.Matrix]
-        contentType = 'application/json; charset=utf-8'
+        contentTypeValue = contentTypeJson
         break
       }
       // /api/qrcode/encoder.svg?content=123
       case 'encoder.svg': {
         data = QrMatrix2SvgPath(new QRCode(contentValue, levelValue, modeValue, versionNumberValue).Matrix, pixelSizeValue)
+        contentTypeValue = contentTypeSvg
         break
       }
       default: {
-        response.status(404).end('404 NOT FOUND')
+        status = 404
+        data = textNotFound
       }
     }
-    response.status(200)
-      .setHeader('Content-Type', contentType)
-      .setHeader('Cache-Control', 'max-age=21600, s-maxage=43200, stale-while-revalidate=86400')
-      .send(data)
   } catch (e) {
     console.error(e)
-    response.status(500).end(e.toString())
+    status = 500
+    data = e.toString()
   }
+  response.status(status)
+    .setHeader(contentType, contentTypeValue)
+    .send(data)
 }
