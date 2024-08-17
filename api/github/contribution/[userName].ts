@@ -1,5 +1,5 @@
 import {VercelRequest, VercelResponse} from '@vercel/node'
-import {cacheControl, cacheControlMaxAge, contentType, contentTypeJson, contentTypePlain} from '../../constants'
+import {cacheControl, cacheControlMaxAge, contentType, contentTypeJson, contentTypePlain} from '../../../src/constants'
 
 // import * as fs from 'fs'
 

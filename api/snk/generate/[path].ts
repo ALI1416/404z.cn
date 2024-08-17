@@ -7,7 +7,7 @@ import {
   contentTypePlain,
   contentTypeSvg,
   textNotFound
-} from '../../constants'
+} from '../../../src/constants'
 import {snk} from '@ali1416/snk'
 
 export default async (request: VercelRequest, response: VercelResponse) => {

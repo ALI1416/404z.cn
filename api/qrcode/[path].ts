@@ -1,5 +1,5 @@
 import {VercelRequest, VercelResponse} from '@vercel/node'
-import {contentType, contentTypeJson, contentTypePlain, contentTypeSvg, textNotFound} from '../constants'
+import {contentType, contentTypeJson, contentTypePlain, contentTypeSvg, textNotFound} from '../../src/constants'
 import {QRCode} from '@ali1416/qrcode-encoder'
 
 /**
