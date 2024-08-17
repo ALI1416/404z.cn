@@ -1,5 +1,11 @@
 # API
 
+## 获取IP地址
+
+- `/api/ip` : `获取IP地址`
+  - 示例
+    - `获取IP地址` : <https://www.404z.cn/api/ip>
+
 ## GitHub
 
 - `/api/github/contribution/[userName]` : `获取用户贡献`

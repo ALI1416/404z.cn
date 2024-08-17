@@ -21,11 +21,5 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/api/404.ts"
-    }
   ]
 }
