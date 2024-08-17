@@ -9,7 +9,7 @@
     "about": "node ./script/about.js",
     "files": "node ./script/files.js",
     "publish": "node ./script/publish.js",
-    "build2": "npm run about && npm run publish"
+    "build2": "npm run about && npm run files && npm run publish"
   },
   "devDependencies": {
     "@ali1416/qrcode-encoder": "^1.1.3",
