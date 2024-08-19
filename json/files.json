@@ -16,6 +16,10 @@
     "./dist/demo/qrcode-encoder.html"
   ],
   [
+    "https://raw.githubusercontent.com/ALI1416/ip2region-js/master/demo/index.html",
+    "./dist/demo/ip2region.html"
+  ],
+  [
     "https://raw.githubusercontent.com/ALI1416/phone2region-js/master/demo/index.html",
     "./dist/demo/phone2region.html"
   ],
