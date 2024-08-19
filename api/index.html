@@ -6,10 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <base target="_blank">
+  <!-- https://vercel.com/docs/analytics -->
   <script defer src="/_vercel/insights/script.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.0.0/marked.min.js"></script>
+  <!-- https://github.com/markedjs/marked -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/14.0.0/marked.min.js"></script>
+  <!-- https://github.com/sindresorhus/github-markdown-css -->
   <link type="text/css" rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.4.0/github-markdown.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.6.1/github-markdown.min.css">
   <title>API</title>
   <style>
     body {
@@ -36,7 +39,6 @@
   async function parse() {
     document.getElementById('markdown-body').innerHTML = marked.parse(await (await fetch('./README.md')).text())
   }
-
 </script>
 </body>
 
