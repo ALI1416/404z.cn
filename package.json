@@ -12,8 +12,8 @@
     "build2": "npm run about && npm run files && npm run publish"
   },
   "devDependencies": {
-    "@ali1416/qrcode-encoder": "^1.1.3",
-    "@ali1416/snk": "^1.1.0",
-    "@vercel/node": "^3.2.8"
+    "@ali1416/qrcode-encoder": "^1.2.0",
+    "@ali1416/snk": "^1.2.0",
+    "@vercel/node": "^3.2.27"
   }
 }
