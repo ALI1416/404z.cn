@@ -12,8 +12,8 @@
     "./dist/files/phone2region/v2.0.0/data/phone2region.txt"
   ],
   [
-    "https://raw.githubusercontent.com/ALI1416/phone2region/v20240501/data/phone2region.txt",
-    "./dist/files/phone2region/v20240501/data/phone2region.txt"
+    "https://raw.githubusercontent.com/ALI1416/phone2region/v20240501/data/phone2region.zdb",
+    "./dist/files/phone2region/v20240501/data/phone2region.zdb"
   ],
   [
     "https://raw.githubusercontent.com/ALI1416/phone2region/v20240501/data/phone2region.txt",
