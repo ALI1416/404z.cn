@@ -95,7 +95,7 @@
 
 ## 获取用户信息
 
-- `https://web.404z.cn/` : `获取用户信息`
+- `https://web.404z.cn/api/` : `获取用户信息`
   - 响应
     - `id`(long) : `ID`
     - `createTime`(string) : `创建时间`
@@ -118,7 +118,7 @@
       - `platform`(string) : `平台`
       - `isMobile`(boolean) : `是移动端`
   - 示例
-    - `获取用户信息` : <https://web.404z.cn/>
+    - `获取用户信息` : <https://web.404z.cn/api/>
 
 ## IP地址转区域
 

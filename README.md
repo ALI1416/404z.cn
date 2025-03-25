@@ -6,7 +6,7 @@
   ![Stars](https://img.shields.io/github/stars/ALI1416?style=social)
   ![Followers](https://img.shields.io/github/followers/ALI1416?style=social)
   &emsp;[Gitee](https://gitee.com/ALI1416)
-- 网站 &emsp;[博客](https://blog.404z.cn)
+- 网站 &emsp;[博客](https://web.404z.cn)
   &emsp;[文件](https://www.404z.cn/files)
   &emsp;[演示](https://www.404z.cn/demo)
   &emsp;[API](https://www.404z.cn/api/)
