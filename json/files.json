@@ -28,6 +28,21 @@
     "./dist/files/phone2region/v20240501/data/phone.old.dat"
   ],
   [
+    "https://raw.githubusercontent.com/ALI1416/phone2region/v2.4.0/data/phone2region.zdb",
+    "./dist/files/phone2region/v2.4.0/data/phone2region.zdb"
+  ],
+  [
+    "https://raw.githubusercontent.com/ALI1416/phone2region/v2.4.0/data/phone2region.txt",
+    "./dist/files/phone2region/v2.4.0/data/phone2region.txt"
+  ],
+  [
+    "https://raw.githubusercontent.com/ALI1416/phone2region/v2.4.0/data/phone.dat",
+    "./dist/files/phone2region/v2.4.0/data/phone.dat"
+  ],
+  [
+    "https://raw.githubusercontent.com/ALI1416/phone2region/v2.4.0/data/phone.old.dat",
+    "./dist/files/phone2region/v2.4.0/data/phone.old.dat"
+  ],  [
     "https://raw.githubusercontent.com/ALI1416/qrcode-encoder-js/master/demo/index.html",
     "./dist/demo/qrcode-encoder.html"
   ],
