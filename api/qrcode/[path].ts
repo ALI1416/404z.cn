@@ -32,19 +32,19 @@ export default (request: VercelRequest, response: VercelResponse) => {
   let pathValue = path as string
   let contentValue = content as string
   let levelValue = Number(level as string)
-  if (isNaN(levelValue)) {
+  if (Number.isNaN(levelValue)) {
     levelValue = undefined
   }
   let modeValue = Number(mode as string)
-  if (isNaN(modeValue)) {
+  if (Number.isNaN(modeValue)) {
     modeValue = undefined
   }
   let versionNumberValue = Number(versionNumber as string)
-  if (isNaN(versionNumberValue)) {
+  if (Number.isNaN(versionNumberValue)) {
     versionNumberValue = undefined
   }
   let pixelSizeValue = Number(pixelSize as string)
-  if (isNaN(pixelSizeValue)) {
+  if (Number.isNaN(pixelSizeValue)) {
     pixelSizeValue = 10
   }
 

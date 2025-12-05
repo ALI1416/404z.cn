@@ -11,7 +11,7 @@ import {cacheControl, cacheControlMaxAge, contentType, contentTypeJson, contentT
  */
 async function getContribution(userName: string, year: string): Promise<number[][]> {
   let url = `https://github.com/users/${userName}/contributions`
-  if (typeof year !== 'undefined') {
+  if (year === 'undefined') {
     url += `?from=${year}-01-01`
   }
   let res = await (await fetch(url)).text()
@@ -28,8 +28,8 @@ function parse(data: string): number[][] {
   let array: number[][] = []
   // 起始年、月、日、总贡献
   let h2 = data.split('<h2')[1].split('h2>')[0]
-  let contributionAll = Number(RegExp(/\s(\d+)\s/).exec(h2)[1])
-  let dateYearReg = RegExp(/in (\d+)\s/).exec(h2)
+  let contributionAll = Number(new RegExp(/\s(\d+)\s/).exec(h2)[1])
+  let dateYearReg = new RegExp(/in (\d+)\s/).exec(h2)
   let dateYear: number, dateMonth: number, dateDay: number
   // 查询指定年，起始年、月、日使用1月1日
   if (dateYearReg !== null) {
@@ -52,24 +52,24 @@ function parse(data: string): number[][] {
       let td = tds[j + 2]
       // 查询上一年，起始年、月、日使用第一天
       if (dateYearReg === null && i === 0 && (j === 0 || j === 1)) {
-        let dateReg = RegExp(/data-date="([^"]+)"/).exec(td)
+        let dateReg = new RegExp(/data-date="([^"]+)"/).exec(td)
         if (dateReg !== null) {
           let date = dateReg[1]
-          dateYear = Number(RegExp(/^(\d+)-/).exec(date)[1])
-          dateMonth = Number(RegExp(/-(\d+)-/).exec(date)[1])
-          dateDay = Number(RegExp(/-(\d+)$/).exec(date)[1])
+          dateYear = Number(new RegExp(/^(\d+)-/).exec(date)[1])
+          dateMonth = Number(new RegExp(/-(\d+)-/).exec(date)[1])
+          dateDay = Number(new RegExp(/-(\d+)$/).exec(date)[1])
         }
       }
       // 贡献级别、贡献
-      let levelReg = RegExp(/data-level="([^"]+)"/).exec(td)
+      let levelReg = new RegExp(/data-level="([^"]+)"/).exec(td)
       if (levelReg !== null) {
         let level = Number(levelReg[1])
-        let contributionReg = RegExp(/(\d+) contribution/).exec(td)
+        let contributionReg = new RegExp(/(\d+) contribution/).exec(td)
         let contribution: number
-        if (contributionReg !== null) {
-          contribution = Number(contributionReg[1])
-        } else {
+        if (contributionReg === null) {
           contribution = 0
+        } else {
+          contribution = Number(contributionReg[1])
         }
         contributions[j].push([level, contribution])
       }

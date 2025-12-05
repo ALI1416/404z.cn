@@ -111,7 +111,7 @@ function defs() {
  */
 function texts(light) {
   let color
-  if (typeof light === 'undefined') {
+  if (light === 'undefined') {
     color = `class="text"`
   } else if (light) {
     color = `fill="${textColorLight}"`
@@ -143,7 +143,7 @@ function uses(light) {
   let uses = ''
   for (let i = 0; i < qrName.length; i++) {
     let color
-    if (typeof light === 'undefined') {
+    if (light === 'undefined') {
       color = `class="qr${i}"`
     } else if (light) {
       color = `fill="${qrColorLight[i]}"`
