@@ -61,5 +61,9 @@
   [
     "https://raw.githubusercontent.com/ALI1416/snk/master/demo/index.html",
     "./dist/demo/snk.html"
+  ],
+  [
+    "https://raw.githubusercontent.com/ALI1416/MobaXtermKeygen/master/index.html",
+    "./dist/demo/MobaXtermKeygen.html"
   ]
 ]
