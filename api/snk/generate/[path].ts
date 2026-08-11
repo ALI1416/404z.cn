@@ -6,19 +6,19 @@ import {
   contentTypeJson,
   contentTypePlain,
   contentTypeSvg,
-  textNotFound
-} from '../../../src/constants'
+  textNotFound,
+} from '../../../src/Constant'
 import {snk} from '@ali1416/snk'
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   const {path, year} = request.query
-  let pathValue = path as string
-  let pathValueArray = pathValue.split('.')
-  let yearValue = year as string
+  let pathValue: string = path as string
+  let pathValueArray: string [] = pathValue.split('.')
+  let yearValue: string = year as string
   let userNameValue: string
 
-  let status = 200
-  let contentTypeValue = contentTypePlain
+  let status: number = 200
+  let contentTypeValue: string = contentTypePlain
   let data: any
   try {
     userNameValue = pathValueArray[0]
@@ -62,9 +62,10 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       data = textNotFound
     }
   } catch (e) {
-    console.error(e)
+    const error = e as Error
+    console.error(error)
     status = 500
-    data = e.toString()
+    data = error.toString()
   }
   response.status(status)
     .setHeader(contentType, contentTypeValue)

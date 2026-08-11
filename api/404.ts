@@ -1,5 +1,5 @@
 import {VercelRequest, VercelResponse} from '@vercel/node'
-import {contentType, contentTypePlain, textNotFound} from '../src/constants'
+import {contentType, contentTypePlain, textNotFound} from '../src/Constant'
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   response.status(404)

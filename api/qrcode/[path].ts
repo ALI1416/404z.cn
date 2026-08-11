@@ -1,5 +1,5 @@
 import {VercelRequest, VercelResponse} from '@vercel/node'
-import {contentType, contentTypeJson, contentTypePlain, contentTypeSvg, textNotFound} from '../../src/constants'
+import {contentType, contentTypeJson, contentTypePlain, contentTypeSvg, textNotFound} from '../../src/Constant'
 import {QRCode} from '@ali1416/qrcode-encoder'
 
 /**
@@ -9,15 +9,15 @@ import {QRCode} from '@ali1416/qrcode-encoder'
  * @return string SVG
  */
 function QrMatrix2SvgPath(bytes: boolean[][], pixelSize: number): string {
-  let length = bytes.length
-  let size = (length + 2) * pixelSize
-  let svg = '<svg width="' + size + '" height="' + size + '" viewBox="0 0 ' + size + ' ' + size + '" xmlns="http://www.w3.org/2000/svg">\n'
+  let length: number = bytes.length
+  let size: number = (length + 2) * pixelSize
+  let svg: string = '<svg width="' + size + '" height="' + size + '" viewBox="0 0 ' + size + ' ' + size + '" xmlns="http://www.w3.org/2000/svg">\n'
   svg += '<path d="'
-  for (let x = 0; x < length; x++) {
-    for (let y = 0; y < length; y++) {
+  for (let x: number = 0; x < length; x++) {
+    for (let y: number = 0; y < length; y++) {
       if (bytes[x][y]) {
-        let xx = (x + 1) * pixelSize
-        let yy = (y + 1) * pixelSize
+        let xx: number = (x + 1) * pixelSize
+        let yy: number = (y + 1) * pixelSize
         svg += 'M' + xx + ' ' + yy + 'H' + (xx + pixelSize) + 'V' + (yy + pixelSize) + 'H' + xx + 'Z'
       }
     }
@@ -29,33 +29,33 @@ function QrMatrix2SvgPath(bytes: boolean[][], pixelSize: number): string {
 
 export default (request: VercelRequest, response: VercelResponse) => {
   const {path, content, level, mode, versionNumber, pixelSize} = request.query
-  let pathValue = path as string
-  let contentValue = content as string
-  let levelValue = Number(level as string)
+  let pathValue: string = path as string
+  let contentValue: string = content as string
+  let levelValue: number | undefined = Number(level as string)
   if (Number.isNaN(levelValue)) {
     levelValue = undefined
   }
-  let modeValue = Number(mode as string)
+  let modeValue: number | undefined = Number(mode as string)
   if (Number.isNaN(modeValue)) {
     modeValue = undefined
   }
-  let versionNumberValue = Number(versionNumber as string)
+  let versionNumberValue: number | undefined = Number(versionNumber as string)
   if (Number.isNaN(versionNumberValue)) {
     versionNumberValue = undefined
   }
-  let pixelSizeValue = Number(pixelSize as string)
+  let pixelSizeValue: number = Number(pixelSize as string)
   if (Number.isNaN(pixelSizeValue)) {
     pixelSizeValue = 10
   }
 
-  let status = 200
-  let contentTypeValue = contentTypePlain
+  let status: number = 200
+  let contentTypeValue: string = contentTypePlain
   let data: any
   try {
     switch (pathValue) {
       // /api/qrcode/encoder?content=123
       case 'encoder': {
-        let qr = new QRCode(contentValue, levelValue, modeValue, versionNumberValue)
+        let qr: QRCode = new QRCode(contentValue, levelValue, modeValue, versionNumberValue)
         data = [[qr.Level, qr.Mode, qr.VersionNumber], qr.Matrix]
         contentTypeValue = contentTypeJson
         break
@@ -72,9 +72,10 @@ export default (request: VercelRequest, response: VercelResponse) => {
       }
     }
   } catch (e) {
-    console.error(e)
+    const error = e as Error
+    console.error(error)
     status = 500
-    data = e.toString()
+    data = error.toString()
   }
   response.status(status)
     .setHeader(contentType, contentTypeValue)

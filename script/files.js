@@ -1,5 +1,5 @@
 const pkg = require('../json/files.json')
-const fs = require('fs')
+const fs = require('node:fs')
 
 async function download() {
   for (let p of pkg) {
