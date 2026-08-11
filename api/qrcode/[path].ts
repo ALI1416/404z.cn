@@ -3,6 +3,24 @@ import {contentType, contentTypeJson, contentTypePlain, contentTypeSvg, textNotF
 import {QRCode} from '@ali1416/qrcode-encoder'
 
 /**
+ * 二维码boolean[][]转number[][]
+ * @param bytes boolean[][]
+ * @return {number[][]}
+ */
+function QrMatrix2Number(bytes: boolean[][]): number[][] {
+  let array: number[][] = []
+  let length: number = bytes.length
+  for (let x: number = 0; x < length; x++) {
+    let a: number[] = []
+    for (let y: number = 0; y < length; y++) {
+      a.push(bytes[x][y] ? 1 : 0)
+    }
+    array.push(a)
+  }
+  return array
+}
+
+/**
  * 二维码boolean[][]转SVG路径
  * @param bytes boolean[][]
  * @param pixelSize 像素尺寸
@@ -56,7 +74,7 @@ export default (request: VercelRequest, response: VercelResponse) => {
       // /api/qrcode/encoder?content=123
       case 'encoder': {
         let qr: QRCode = new QRCode(contentValue, levelValue, modeValue, versionNumberValue)
-        data = [[qr.Level, qr.Mode, qr.VersionNumber], qr.Matrix]
+        data = [[qr.Level, qr.Mode, qr.VersionNumber], QrMatrix2Number(qr.Matrix)]
         contentTypeValue = contentTypeJson
         break
       }

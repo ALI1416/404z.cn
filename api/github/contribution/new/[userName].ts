@@ -101,9 +101,8 @@ async function getContribution(userName: string, githubToken: string, year?: str
  * @return {ContributionType} 贡献
  */
 function parse(data: string): ContributionType {
-
+  return data
 }
-
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   const githubToken: string | undefined = process.env.GH_TOKEN
