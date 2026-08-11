@@ -1,113 +1,169 @@
 import {VercelRequest, VercelResponse} from '@vercel/node'
 import {cacheControl, cacheControlMaxAge, contentType, contentTypeJson, contentTypePlain} from '../../../src/Constant'
 
-// import * as fs from 'node:fs'
-
-// https://github.com/Platane/snk/blob/main/packages/github-user-contribution/fetchContributionHtml.ts
-
-/**
- * 获取用户贡献
- * @param userName 用户名
- * @param year 年(默认一年前)
- * @return {ContributionType} 贡献
- */
-async function getContribution(userName: string, year: string): Promise<ContributionType> {
-  let url: string = `https://github.com/users/${userName}/contributions`
-  if (year === 'undefined') {
-    url += `?from=${year}-01-01`
-  }
-  let res: string = await (await fetch(url)).text()
-  // let res: string = fs.readFileSync('./reference/contributions.html').toString()
-  return parse(res)
-}
-
 /**
  * 贡献类型
  */
 type ContributionType = [
-  ContributionDataAndTotalType,
+  ContributionInfoType,
   ContributionItemType[][]
-];
+]
 /**
- * 贡献时间和总计类型(起始年、月、日、总贡献)
+ * 贡献信息类型(起始年、月、日、总贡献)
  */
-type ContributionDataAndTotalType = [number, number, number, number];
+type ContributionInfoType = [number, number, number, number]
 /**
  * 贡献项类型(贡献级别、贡献)
  */
-type ContributionItemType = [number, number];
+type ContributionItemType = [number, number]
 
 /**
- * 解析
- * @param data 数据
- * @return {ContributionType} 贡献
+ * GraphQL响应
  */
-function parse(data: string): ContributionType {
-  let array: Partial<ContributionType> = []
-  // 起始年、月、日、总贡献
-  let h2: string = data.split('<h2')[1].split('h2>')[0]
-  let contributionAll: number = Number((new RegExp(/\s(\d+)\s/).exec(h2) as RegExpExecArray)[1])
-  let dateYearReg: RegExpExecArray | null = new RegExp(/in (\d+)\s/).exec(h2)
-  let dateYear: number = 0, dateMonth: number = 0, dateDay: number = 0
-  // 查询指定年，起始年、月、日使用1月1日
-  if (dateYearReg !== null) {
-    dateYear = Number(dateYearReg[1])
-    dateMonth = 1
-    dateDay = 1
-  }
-  // 贡献级别、贡献
-  let contributions: number[][][] = []
-  for (let i: number = 0; i < 53; i++) {
-    contributions.push([])
-  }
-  let tbody: string = data.split('<tbody')[1].split('</tbody')[0]
-  let trs: string[] = tbody.split('<tr')
-  // 1周7天
-  for (let i: number = 0; i < 7; i++) {
-    let tds: string[] = trs[i + 1].split('<td')
-    // 1年53周
-    for (let j: number = 0; j < 53; j++) {
-      let td: string = tds[j + 2]
-      // 查询上一年，起始年、月、日使用第一天
-      if (dateYearReg === null && i === 0 && (j === 0 || j === 1)) {
-        let dateReg: RegExpExecArray | null = new RegExp(/data-date="([^"]+)"/).exec(td)
-        if (dateReg !== null) {
-          let date: string = dateReg[1]
-          dateYear = Number((new RegExp(/^(\d+)-/).exec(date) as RegExpExecArray)[1])
-          dateMonth = Number((new RegExp(/-(\d+)-/).exec(date) as RegExpExecArray)[1])
-          dateDay = Number((new RegExp(/-(\d+)$/).exec(date) as RegExpExecArray)[1])
+type GraphQLResponse = {
+  data: {
+    user: {
+      contributionsCollection: {
+        contributionCalendar: {
+          weeks: {
+            contributionDays: GraphQLResponseData[]
+          }[]
         }
-      }
-      // 贡献级别、贡献
-      let levelReg: RegExpExecArray | null = new RegExp(/data-level="([^"]+)"/).exec(td)
-      if (levelReg !== null) {
-        let level: number = Number(levelReg[1])
-        let contributionReg: RegExpExecArray | null = new RegExp(/(\d+) contribution/).exec(td)
-        let contribution: number
-        if (contributionReg === null) {
-          contribution = 0
-        } else {
-          contribution = Number(contributionReg[1])
-        }
-        contributions[j].push([level, contribution])
       }
     }
   }
-  array.push([dateYear, dateMonth, dateDay, contributionAll], contributions as ContributionItemType[][])
-  return array as ContributionType
+}
+
+/**
+ * GraphQL响应数据
+ */
+type GraphQLResponseData = {
+  date: string
+  contributionLevel: GraphQLResponseContributionLevel
+  contributionCount: number
+}
+
+/**
+ * GraphQL响应贡献级别
+ */
+type GraphQLResponseContributionLevel =
+  'NONE'
+  | 'FIRST_QUARTILE'
+  | 'SECOND_QUARTILE'
+  | 'THIRD_QUARTILE'
+  | 'FOURTH_QUARTILE'
+
+/**
+ * 获取贡献级别
+ * @param level 贡献级别
+ * @return {number} 贡献级别
+ */
+function getContributionLevel(level: GraphQLResponseContributionLevel): number {
+  switch (level) {
+    case 'FIRST_QUARTILE':
+      return 1
+    case 'SECOND_QUARTILE':
+      return 2
+    case 'THIRD_QUARTILE':
+      return 3
+    case 'FOURTH_QUARTILE':
+      return 4
+    default:
+      return 0
+  }
+}
+
+/**
+ * 获取用户贡献
+ * @param userName 用户名
+ * @param githubToken githubToken
+ * @param year 年(默认一年前)
+ * @return {ContributionType | []} 贡献
+ */
+async function getContribution(userName: string, githubToken: string, year?: string): Promise<ContributionType | []> {
+  const query: string = /* GraphQL */ `query ($login: String!, $from: DateTime, $to: DateTime) {
+  user(login: $login) {
+    contributionsCollection(from: $from, to: $to) {
+      contributionCalendar {
+        weeks {
+          contributionDays {
+            date
+            contributionLevel
+            contributionCount
+          }
+        }
+      }
+    }
+  }
+}`
+  const variables: {
+    login: string,
+    from?: string,
+    to?: string
+  } = {login: userName}
+  if (year != undefined) {
+    variables.from = year + '-01-01T00:00:00Z'
+    variables.to = year + '-12-31T23:59:59Z'
+  }
+  const res: GraphQLResponse = await (await fetch('https://api.github.com/graphql', {
+    headers: {
+      Authorization: `bearer ${githubToken}`,
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+    body: JSON.stringify({variables, query}),
+  })).json()
+  return parse(res)
+}
+
+/**
+ * 解析
+ * @param json JSON数据
+ * @return {ContributionType | []} 贡献
+ */
+function parse(json: GraphQLResponse): ContributionType | [] {
+  if (json.data) {
+    let array: any[] = []
+    let data: {
+      contributionDays: GraphQLResponseData[]
+    }[] = json.data.user.contributionsCollection.contributionCalendar.weeks
+    // 起始年、月、日
+    let date: string[] = data[0].contributionDays[0].date.split('-')
+    array[0] = [Number(date[0]), Number(date[1]), Number(date[2])]
+    // 总贡献
+    let count: number = 0
+    // 贡献
+    array[1] = []
+    for (let d of data) {
+      let a: number[][] = []
+      for (let c of d.contributionDays) {
+        let b: number[] = []
+        b.push(getContributionLevel(c.contributionLevel))
+        let d: number = Number(c.contributionCount)
+        b.push(d)
+        a.push(b)
+        count += d
+      }
+      array[1].push(a)
+    }
+    array[0][3] = count
+    return array as ContributionType
+  } else {
+    return []
+  }
 }
 
 export default async (request: VercelRequest, response: VercelResponse) => {
+  const githubToken: string = process.env.GH_TOKEN as string
   const {userName, year} = request.query
   let userNameValue: string = userName as string
   let yearValue: string = year as string
-
   let status: number = 200
   let contentTypeValue: string = contentTypePlain
   let data: any
   try {
     // /api/github/contribution/ali1416
-    data = await getContribution(userNameValue, yearValue)
+    data = await getContribution(userNameValue, githubToken, yearValue)
     contentTypeValue = contentTypeJson
   } catch (e) {
     const error = e as Error
