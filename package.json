@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@ali1416/qrcode-encoder": "^1.3.0",
-    "@ali1416/snk": "^1.2.0",
-    "@vercel/node": "^5.9.6"
+    "@ali1416/snk": "^1.3.0",
+    "@vercel/node": "^5.9.9"
   }
 }
