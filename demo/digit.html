@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>批量数字SVG生成器</title>
+  <script src="https://unpkg.com/@zip.js/zip.js/dist/zip.min.js"></script>
+</head>
+
+<body>
+<div>
+  <h2>设计图</h2>
+  <img id="designImg" width="64" alt="88.svg">
+  <br>
+  <button onclick="downloadDesign()">下载88.svg</button>
+</div>
+
+<div>
+  <h2>生成选项</h2>
+  <ul>
+    <li>
+      <label>画布宽度：<input type="number" id="width" min="1" value="512">(>0)</label>
+    </li>
+    <li>
+      <label>画布高度：<input type="number" id="height" min="1" value="512">(>0)</label>
+    </li>
+    <li>
+      <label>字体颜色：黑色
+        <input type="checkbox" id="colorBlack" checked>
+        <input type="color" id="color" value="#000000" style="display:none;">
+      </label>
+    </li>
+    <li>
+      <label>背景颜色：透明
+        <input type="checkbox" id="bgColorTransparent" checked>
+        <input type="color" id="bgColor" value="#ffffff" style="display:none;">
+      </label>
+    </li>
+    <li>
+      <label for="numMin">数字范围：从
+        <input type="number" id="numMin" min="0" max="99999" value="0">
+        到
+        <input type="number" id="numMax" min="0" max="99999" value="99">
+        (0~99999)</label>
+    </li>
+    <li>
+      <label>固定长度：不足填充0<input type="checkbox" id="fillZero" checked></label>
+    </li>
+    <li id="fillZeroRow">
+      <label>指定长度：<input type="number" id="fillZeroLength" min="1" max="5" value="2">(1~5)</label>
+    </li>
+  </ul>
+  <button id="generateBtn">点击生成</button>
+  <p id="generateMsg">点击按钮生成SVG图片</p>
+</div>
+
+<div>
+  <h2>打包下载</h2>
+  <button id="downloadBtn" disabled>点击下载</button>
+  <p id="downloadMsg">点击按钮下载打包后的文件</p>
+</div>
+
+<div>
+  <h2>预览</h2>
+  <button id="previewBtn" disabled>点击生成</button>
+  <p id="previewMsg">点击按钮预览SVG图片</p>
+  <div id="previewBox"></div>
+</div>
+
+<script>
+  let svgData = []
+
+  const el = {
+    designImg: document.getElementById('designImg'),
+    width: document.getElementById('width'),
+    height: document.getElementById('height'),
+    colorBlack: document.getElementById('colorBlack'),
+    color: document.getElementById('color'),
+    bgColorTransparent: document.getElementById('bgColorTransparent'),
+    bgColor: document.getElementById('bgColor'),
+    numMin: document.getElementById('numMin'),
+    numMax: document.getElementById('numMax'),
+    fillZero: document.getElementById('fillZero'),
+    fillZeroRow: document.getElementById('fillZeroRow'),
+    fillZeroLength: document.getElementById('fillZeroLength'),
+    generateBtn: document.getElementById('generateBtn'),
+    generateMsg: document.getElementById('generateMsg'),
+    downloadBtn: document.getElementById('downloadBtn'),
+    downloadMsg: document.getElementById('downloadMsg'),
+    previewBtn: document.getElementById('previewBtn'),
+    previewMsg: document.getElementById('previewMsg'),
+    previewBox: document.getElementById('previewBox'),
+  }
+
+  el.colorBlack.addEventListener('change', () => {
+    el.color.style.display = el.colorBlack.checked ? 'none' : 'inline-block'
+  })
+  el.bgColorTransparent.addEventListener('change', () => {
+    el.bgColor.style.display = el.bgColorTransparent.checked ? 'none' : 'inline-block'
+  })
+  el.fillZero.addEventListener('change', () => {
+    el.fillZeroRow.style.display = el.fillZero.checked ? 'list-item' : 'none'
+  })
+
+  const header1 = '<svg width="'
+  // +width.value+
+  const header2 = '" height="'
+  // +height.value+
+  const header3 = '" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"'
+  // +' style="background-color:#000000"'+
+  const header4 = '>\n<defs>\n<path d="M144 256l28-28h168l28 28-28 28H172z" id="x"'
+  // +' fill="#ffffff"'+
+  const header5 = '/>\n<use id="y" href="#x" transform="rotate(90 256 256)"/>\n'
+  // +getHeader6(numList)+
+  // +getMain(numList)+
+  const footer = '\n</svg>'
+
+  const n = []
+  n[0] = `<g id="a">
+<use href="#x" y="-228"/>
+<use href="#x" y="228"/>
+<use href="#y" x="-114" y="-114"/>
+<use href="#y" x="-114" y="114"/>
+<use href="#y" x="114" y="-114"/>
+<use href="#y" x="114" y="114"/>
+</g>`
+  n[1] = `<g id="b">
+<use href="#y" x="114" y="-114"/>
+<use href="#y" x="114" y="114"/>
+</g>`
+  n[2] = `<g id="c">
+<use href="#x" y="-228"/>
+<use href="#x"/>
+<use href="#x" y="228"/>
+<use href="#y" x="-114" y="114"/>
+<use href="#y" x="114" y="-114"/>
+</g>`
+  n[3] = `<g id="d">
+<use href="#x" y="-228"/>
+<use href="#x"/>
+<use href="#x" y="228"/>
+<use href="#y" x="114" y="-114"/>
+<use href="#y" x="114" y="114"/>
+</g>`
+  n[4] = `<g id="e">
+<use href="#x"/>
+<use href="#y" x="-114" y="-114"/>
+<use href="#y" x="114" y="-114"/>
+<use href="#y" x="114" y="114"/>
+</g>`
+  n[5] = `<g id="f">
+<use href="#x" y="-228"/>
+<use href="#x"/>
+<use href="#x" y="228"/>
+<use href="#y" x="-114" y="-114"/>
+<use href="#y" x="114" y="114"/>
+</g>`
+  n[6] = `<g id="g">
+<use href="#x" y="-228"/>
+<use href="#x"/>
+<use href="#x" y="228"/>
+<use href="#y" x="-114" y="-114"/>
+<use href="#y" x="-114" y="114"/>
+<use href="#y" x="114" y="114"/>
+</g>`
+  n[7] = `<g id="h">
+<use href="#x" y="-228"/>
+<use href="#y" x="114" y="-114"/>
+<use href="#y" x="114" y="114"/>
+</g>`
+  n[8] = `<g id="i">
+<use href="#x" y="-228"/>
+<use href="#x"/>
+<use href="#x" y="228"/>
+<use href="#y" x="-114" y="-114"/>
+<use href="#y" x="-114" y="114"/>
+<use href="#y" x="114" y="-114"/>
+<use href="#y" x="114" y="114"/>
+</g>`
+  n[9] = `<g id="j">
+<use href="#x" y="-228"/>
+<use href="#x"/>
+<use href="#x" y="228"/>
+<use href="#y" x="-114" y="-114"/>
+<use href="#y" x="114" y="-114"/>
+<use href="#y" x="114" y="114"/>
+</g>`
+
+  function getHeader6(numList) {
+    const num = [...new Set(numList)]
+    let header6 = ''
+    for (const i of num) {
+      header6 += n[i] + '\n'
+    }
+    return header6 + '</defs>\n'
+  }
+
+  function getHeader(numList) {
+    const w = el.width.value
+    const h = el.height.value
+    let bgStyle = ''
+    if (!el.bgColorTransparent.checked) {
+      bgStyle = ` style="background-color:${el.bgColor.value}"`
+    }
+    let fillColor = ''
+    if (!el.colorBlack.checked && el.color.value !== '#000000') {
+      fillColor = ` fill="${el.color.value}"`
+    }
+    return header1 + w + header2 + h + header3 + bgStyle + header4 + fillColor + header5 + getHeader6(numList)
+  }
+
+  function num2Id(num) {
+    return String.fromCharCode(Number(num) + 97)
+  }
+
+  function digit1Length(numList) {
+    return `<use href="#${num2Id(numList[0])}" transform="scale(.9) skewX(-5) translate(54,29)"/>`
+  }
+
+  function digit2Length(numList) {
+    return `<g transform="scale(.7) skewX(-5) translate(-28,110)">
+<use href="#${num2Id(numList[0])}"/>
+<use href="#${num2Id(numList[1])}" x="340"/>
+</g>`
+  }
+
+  function digit3Length(numList) {
+    return `<g transform="scale(.46) skewX(-5) translate(12,302)">
+<use href="#${num2Id(numList[0])}"/>
+<use href="#${num2Id(numList[1])}" x="340"/>
+<use href="#${num2Id(numList[2])}" x="680"/>
+</g>`
+  }
+
+  function digit4Length(numList) {
+    return `<g transform="scale(.342) skewX(-5) translate(48,494)">
+<use href="#${num2Id(numList[0])}"/>
+<use href="#${num2Id(numList[1])}" x="340"/>
+<use href="#${num2Id(numList[2])}" x="680"/>
+<use href="#${num2Id(numList[3])}" x="1020"/>
+</g>`
+  }
+
+  function digit5Length(numList) {
+    return `<g transform="scale(.273) skewX(-5) translate(82,682)">
+<use href="#${num2Id(numList[0])}"/>
+<use href="#${num2Id(numList[1])}" x="340"/>
+<use href="#${num2Id(numList[2])}" x="680"/>
+<use href="#${num2Id(numList[3])}" x="1020"/>
+<use href="#${num2Id(numList[4])}" x="1360"/>
+</g>`
+  }
+
+  function getMain(numList) {
+    switch (numList.length) {
+      case 1:
+        return digit1Length(numList)
+      case 2:
+        return digit2Length(numList)
+      case 3:
+        return digit3Length(numList)
+      case 4:
+        return digit4Length(numList)
+      case 5:
+        return digit5Length(numList)
+    }
+  }
+
+  function getSvg(numList) {
+    return getHeader(numList) + getMain(numList) + footer
+  }
+
+  el.generateBtn.addEventListener('click', function () {
+    el.generateMsg.textContent = '正在生成，请稍后...'
+    let min = Number.parseInt(el.numMin.value, 10)
+    let max = Number.parseInt(el.numMax.value, 10)
+    if (min < 0) min = 0
+    if (max > 99999) max = 99999
+    if (min > max) [min, max] = [max, min]
+
+    svgData = []
+    const fillZero = el.fillZero.checked
+    const fillLen = Number.parseInt(el.fillZeroLength.value, 10)
+    for (let i = min; i <= max; i++) {
+      const name = fillZero ? i.toString().padStart(fillLen, '0') : i.toString()
+      const svgText = getSvg(name.split(''))
+      svgData.push([name, svgText])
+    }
+    el.generateMsg.textContent = `已生成${svgData.length}个SVG图片`
+    el.downloadBtn.disabled = false
+    el.previewBtn.disabled = false
+    el.previewBox.innerHTML = ''
+    el.previewMsg.textContent = '点击按钮预览SVG图片'
+  })
+
+  el.downloadBtn.addEventListener('click', async function () {
+    el.downloadMsg.textContent = '正在打包，请稍后...'
+    const time = Date.now()
+    const zipFile = new zip.BlobWriter()
+    const zipWriter = new zip.ZipWriter(zipFile)
+    for (const item of svgData) {
+      await zipWriter.add(`${item[0]}.svg`, new zip.TextReader(item[1]))
+    }
+    await zipWriter.close()
+    const zipFileBlob = await zipFile.getData()
+    saveAs(zipFileBlob, `${time}.zip`)
+    el.downloadMsg.textContent = '下载已完成'
+  })
+
+  el.previewBtn.addEventListener('click', function () {
+    el.previewMsg.textContent = '正在生成预览，请稍后...'
+    let html = ''
+    svgData.forEach((item, idx) => {
+      html += `<div style="display:inline-block;margin:0 10px;">
+<img width="64" src="data:image/svg+xml,${encodeURIComponent(item[1])}" alt="${item[0]}.svg">
+<br>
+<button onclick="downloadSingle(${idx})">下载${item[0]}.svg</button>
+</div>
+`
+    })
+    el.previewBox.innerHTML = html
+    el.previewMsg.textContent = '预览已生成'
+  })
+
+  window.downloadSingle = function (index) {
+    const [name, svgText] = svgData[index]
+    const blob = new Blob([svgText], {type: 'image/svg+xml'})
+    saveAs(blob, `${name}.svg`)
+  }
+
+  function saveAs(blob, filename) {
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = filename
+    document.body.append(a)
+    a.click()
+    a.remove()
+    URL.revokeObjectURL(url)
+  }
+
+  function downloadDesign() {
+    const blob = new Blob([design], {type: 'image/svg+xml'})
+    saveAs(blob, '88.svg')
+  }
+
+  const design = '<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">\n' +
+    '  <defs>\n' +
+    '    <g id="h">\n' +
+    '      <!-- 矩形和三角形组合 -->\n' +
+    '      <!-- <rect x="172" y="228" width="168" height="56"/> -->\n' +
+    '      <!-- <polygon id="tri" points="144,256 172,228 172,284"/> -->\n' +
+    '      <!-- <use href="#tri" transform="rotate(180,256,256)"/> -->\n' +
+    '      <!-- 转化成多边形 -->\n' +
+    '      <!-- <polygon points="144,256 172,228 340,228 368,256 340,284 172,284"/> -->\n' +
+    '      <!-- 转化成路径 -->\n' +
+    '      <!-- <path d="M144 256L172 228 340 228 368 256 340 284 172 284z"/> -->\n' +
+    '      <!-- 路径简化 -->\n' +
+    '      <path d="M144 256l28-28h168l28 28-28 28H172z"/>\n' +
+    '    </g>\n' +
+    '    <use id="v" href="#h" transform="rotate(90,256,256)"/>\n' +
+    '    <g id="n0">\n' +
+    '      <use href="#h" y="-228"/>\n' +
+    '      <use href="#h" y="228"/>\n' +
+    '      <use href="#v" x="-114" y="-114"/>\n' +
+    '      <use href="#v" x="-114" y="114"/>\n' +
+    '      <use href="#v" x="114" y="-114"/>\n' +
+    '      <use href="#v" x="114" y="114"/>\n' +
+    '    </g>\n' +
+    '    <g id="n1">\n' +
+    '      <use href="#v" x="114" y="-114"/>\n' +
+    '      <use href="#v" x="114" y="114"/>\n' +
+    '    </g>\n' +
+    '    <g id="n2">\n' +
+    '      <use href="#h" y="-228"/>\n' +
+    '      <use href="#h"/>\n' +
+    '      <use href="#h" y="228"/>\n' +
+    '      <use href="#v" x="-114" y="114"/>\n' +
+    '      <use href="#v" x="114" y="-114"/>\n' +
+    '    </g>\n' +
+    '    <g id="n3">\n' +
+    '      <use href="#h" y="-228"/>\n' +
+    '      <use href="#h"/>\n' +
+    '      <use href="#h" y="228"/>\n' +
+    '      <use href="#v" x="114" y="-114"/>\n' +
+    '      <use href="#v" x="114" y="114"/>\n' +
+    '    </g>\n' +
+    '    <g id="n4">\n' +
+    '      <use href="#h"/>\n' +
+    '      <use href="#v" x="-114" y="-114"/>\n' +
+    '      <use href="#v" x="114" y="-114"/>\n' +
+    '      <use href="#v" x="114" y="114"/>\n' +
+    '    </g>\n' +
+    '    <g id="n5">\n' +
+    '      <use href="#h" y="-228"/>\n' +
+    '      <use href="#h"/>\n' +
+    '      <use href="#h" y="228"/>\n' +
+    '      <use href="#v" x="-114" y="-114"/>\n' +
+    '      <use href="#v" x="114" y="114"/>\n' +
+    '    </g>\n' +
+    '    <g id="n6">\n' +
+    '      <use href="#h" y="-228"/>\n' +
+    '      <use href="#h"/>\n' +
+    '      <use href="#h" y="228"/>\n' +
+    '      <use href="#v" x="-114" y="-114"/>\n' +
+    '      <use href="#v" x="-114" y="114"/>\n' +
+    '      <use href="#v" x="114" y="114"/>\n' +
+    '    </g>\n' +
+    '    <g id="n7">\n' +
+    '      <use href="#h" y="-228"/>\n' +
+    '      <use href="#v" x="114" y="-114"/>\n' +
+    '      <use href="#v" x="114" y="114"/>\n' +
+    '    </g>\n' +
+    '    <g id="n8">\n' +
+    '      <use href="#h" y="-228"/>\n' +
+    '      <use href="#h"/>\n' +
+    '      <use href="#h" y="228"/>\n' +
+    '      <use href="#v" x="-114" y="-114"/>\n' +
+    '      <use href="#v" x="-114" y="114"/>\n' +
+    '      <use href="#v" x="114" y="-114"/>\n' +
+    '      <use href="#v" x="114" y="114"/>\n' +
+    '    </g>\n' +
+    '    <g id="n9">\n' +
+    '      <use href="#h" y="-228"/>\n' +
+    '      <use href="#h"/>\n' +
+    '      <use href="#h" y="228"/>\n' +
+    '      <use href="#v" x="-114" y="-114"/>\n' +
+    '      <use href="#v" x="114" y="-114"/>\n' +
+    '      <use href="#v" x="114" y="114"/>\n' +
+    '    </g>\n' +
+    '  </defs>\n' +
+    '  <!-- 正8 -->\n' +
+    '  <!-- <use href="#n8"/> -->\n' +
+    '  <!-- 斜8 -->\n' +
+    '  <!-- <use href="#n8" transform="scale(.9) skewX(-5) translate(54,29)"/> -->\n' +
+    '  <!-- 斜88 -->\n' +
+    '  <g transform="scale(.7) skewX(-5) translate(-28,110)">\n' +
+    '    <use href="#n8"/>\n' +
+    '    <use href="#n8" x="340"/>\n' +
+    '  </g>\n' +
+    '  <!-- 斜888 -->\n' +
+    '  <!-- <g transform="scale(.46) skewX(-5) translate(12,302)"> -->\n' +
+    '  <!--   <use href="#n8"/> -->\n' +
+    '  <!--   <use href="#n8" x="340"/> -->\n' +
+    '  <!--   <use href="#n8" x="680"/> -->\n' +
+    '  <!-- </g> -->\n' +
+    '  <!-- 斜8888 -->\n' +
+    '  <!-- <g transform="scale(.342) skewX(-5) translate(48,494)"> -->\n' +
+    '  <!--   <use href="#n8"/> -->\n' +
+    '  <!--   <use href="#n8" x="340"/> -->\n' +
+    '  <!--   <use href="#n8" x="680"/> -->\n' +
+    '  <!--   <use href="#n8" x="1020"/> -->\n' +
+    '  <!-- </g> -->\n' +
+    '  <!-- 斜88888 -->\n' +
+    '  <!-- <g transform="scale(.273) skewX(-5) translate(82,682)"> -->\n' +
+    '  <!--   <use href="#n8"/> -->\n' +
+    '  <!--   <use href="#n8" x="340"/> -->\n' +
+    '  <!--   <use href="#n8" x="680"/> -->\n' +
+    '  <!--   <use href="#n8" x="1020"/> -->\n' +
+    '  <!--   <use href="#n8" x="1360"/> -->\n' +
+    '  <!-- </g> -->\n' +
+    '</svg>'
+
+  el.designImg.src = 'data:image/svg+xml,' + encodeURIComponent(design)
+</script>
+</body>
+
+</html>

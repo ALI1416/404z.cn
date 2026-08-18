@@ -7,3 +7,5 @@ fs.cpSync('./README.md', './dist/README.md')
 // API
 fs.cpSync('./api/index.html', './dist/api/index.html')
 fs.cpSync('./api/README.md', './dist/api/README.md')
+// demo
+fs.cpSync('./demo/digit.html', './dist/demo/digit.html')
